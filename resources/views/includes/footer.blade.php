@@ -1,38 +1,19 @@
-<!-- Bootstrap Icons -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
 <footer class="footer">
 
     <div class="container">
 
-        <div class="row align-items-center">
+        <div class="footer-content">
 
-            <!-- Logo y descripción -->
-            <div class="col-md-6 text-center text-md-start">
+            <div class="footer-brand">
+                <i class="bi bi-mortarboard-fill"></i>
 
-                <div class="d-flex align-items-center justify-content-center justify-content-md-start">
+                <strong>AdminSena</strong>
 
-                    <i class="bi bi-mortarboard-fill fs-3 me-3"></i>
-
-                    <h4 class="fw-bold mb-0">
-                        AdminSena
-                    </h4>
-
-                    <span class="ms-3 ps-3 border-start border-light">
-                        Sistema de Gestión Académica
-                    </span>
-
-                </div>
-
+                <span>Sistema de Gestión Académica</span>
             </div>
 
-            <!-- Derechos -->
-            <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
-
-                <span>
-                    © 2026 AdminSena | Todos los derechos reservados.
-                </span>
-
+            <div class="footer-copy">
+                © 2026 AdminSena | Todos los derechos reservados.
             </div>
 
         </div>
@@ -43,20 +24,60 @@
 
 <style>
 
-.footer{
-    background: linear-gradient(90deg,#0d47a1,#1565c0);
-    color:#fff;
-    padding:22px 0;
-    margin-top:60px;
+.footer {
+    background: #128C35;
+    color: #fff;
+    padding: 13px 0;
+    margin-top: 40px;
 }
 
-.footer h4{
-    margin:0;
-    font-weight:700;
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.footer span{
-    font-size:15px;
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-brand i {
+    font-size: 20px;
+}
+
+.footer-brand strong {
+    font-size: 17px;
+}
+
+.footer-brand span {
+    font-size: 13px;
+    padding-left: 12px;
+    border-left: 1px solid rgba(255,255,255,.5);
+}
+
+.footer-copy {
+    font-size: 12px;
+}
+
+@media (max-width: 768px) {
+
+    .footer-content {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+
+    .footer-brand {
+        justify-content: center;
+    }
+
+    .footer-brand span {
+        border-left: none;
+        padding-left: 0;
+    }
+
 }
 
 </style>

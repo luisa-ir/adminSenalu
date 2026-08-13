@@ -61,7 +61,7 @@ class AreaController extends Controller
     //Destroy se encuentra el registro para luego eliminarlo..
     public function destroy(Area $area){
         $area->delete();
-        return redirect()->route('area.index');
+        return redirect()->route('area.list');
     }
 
 

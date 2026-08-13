@@ -74,3 +74,5 @@ Route::get('teacher/create',[TeacherController::class,'create'])->name('teacher.
 Route::post('teacher/store',[TeacherController::class,'store'])->name('teacher.store');
 Route::get('teacher/{teacher}/edit',[TeacherController::class,'edit'])->name('teacher.edit');
 Route::put('teacher/{teacher}',[TeacherController::class,'update'])->name('teacher.update');
+
+Route::get('/contacto', function(){return view('Contacto.contacto');})->name('contacto');
