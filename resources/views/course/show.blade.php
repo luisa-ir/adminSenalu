@@ -1,43 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-4" style="max-width: 600px;">
-    <div class="card shadow-sm">
-        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-            <h5 class="mb-0">Detalle del Curso #{{ $course->id }}</h5>
-            <a href="{{ route('course.list') }}" class="btn btn-sm btn-light">Volver</a>
-        </div>
+<div class="container my-4">
+    <h2>DETALLE DEL CURSO</h2>
 
+    <div class="card mb-3">
         <div class="card-body">
-            <div class="mb-3">
-                <label class="form-label text-muted fw-bold">ID:</label>
-                <p class="fs-5">{{ $course->id }}</p>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label text-muted fw-bold">Numero de Curso:</label>
-                <p class="fs-5">{{ $course->course_number}}</p>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label text-muted fw-bold">Dia:</label>
-                <p class="fs-5">{{ $course->day}}</p>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label text-muted fw-bold">Area del curso:</label>
-                <p class="fs-5">{{ $course->area_id}}</p>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label text-muted fw-bold">Centro de Formación:</label>
-                <p class="fs-5">{{ $course->training_center_id}}</p>
-            </div>
-        </div>
-
-        <div class="card-footer text-end">
-            <a href="{{ route('course.list') }}" class="btn btn-secondary">Regresar a la lista</a>
+            <h5 class="card-title">Curso #: {{ $course->course_number }}</h5>
+            <p class="card-text"><strong>ID:</strong> {{ $course->id }}</p>
+            <p class="card-text"><strong>Día:</strong> {{ $course->day }}</p>
+            <p class="card-text"><strong>Área:</strong> {{ $course->area->name ?? $course->area_id }}</p>
+            <p class="card-text"><strong>Centro de Formación:</strong> {{ $course->training_center->name ?? $course->training_center_id }}</p>
         </div>
     </div>
+
+    {{-- CORREGIDO: Redirige a 'course.index' --}}
+    <a href="{{ route('course.index') }}" class="btn btn-secondary">
+        Volver a la lista
+    </a>
 </div>
 @endsection

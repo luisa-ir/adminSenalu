@@ -9,72 +9,100 @@ use App\Models\Training_center;
 
 class CourseController extends Controller
 {
-    public function consultaArea(){
-        $curso = Course::find(2);
-        return $curso->area;
+    // Listar todos los cursos
+    public function index()
+    {
+        $courses = Course::all();
+        return view('course.index', compact('courses'));
     }
 
-    public function consultaCentro(){
-        $curso = Course::find(1);
-        return $curso->training_center;
+    // Formulario para crear un nuevo curso
+    public function create()
+    {
+        $areas = Area::all();
+        $training_centers = Training_center::all();
+
+        return view('course.create', compact('areas', 'training_centers'));
     }
 
-    public function consultaAprendiz(){
-        $curso = Course::find(1);
-        return $curso->aprendices;
+    // Guardar un curso en la base de datos
+    public function store(Request $request)
+    {
+        $request->validate([
+            'course_number' => 'required|string|max:255',
+            'day' => 'required|string|max:255',
+            'area_id' => 'required|exists:areas,id',
+            'training_center_id' => 'required|exists:training_centers,id',
+        ]);
+
+        Course::create($request->all());
+
+        
+        return redirect()->route('course.index')->with('success', 'Curso creado con éxito.');
     }
 
-    public function consultaProfe(){
-        $curso = Course::find(1);
-        return $curso->teachers;
-    }
-
-    public function index(){
-
-    $courses = Course::all();
-    return view('course.index',compact('courses'));
-
-    }
-
-    public function show($id){
-        $course = Course::find($id);
+    // Mostrar un curso específico
+    public function show($id)
+    {
+        $course = Course::findOrFail($id);
         return view('course.show', compact('course'));
     }
 
-    public function create (){
-
-    $areas=Area::all();
-    $training_centers=Training_center::all();
-
-     return view('course.create',compact('areas','training_centers'));
-    }
-
-
-    public function store(Request $request){
-
-    $course=Course::create($request->all());
-
-    return $course;
-    }
-
+    // Formulario para editar un curso existente
     public function edit(Course $course)
     {
         $areas = Area::all();
-        return view('course.edit', compact('course', 'users'));
+        $training_centers = Training_center::all();
+
+        
+        return view('course.edit', compact('course', 'areas', 'training_centers'));
     }
 
+    // Actualizar un curso
     public function update(Request $request, Course $course)
     {
+        $request->validate([
+            'course_number' => 'required|string|max:255',
+            'day' => 'required|string|max:255',
+            'area_id' => 'required|exists:areas,id',
+            'training_center_id' => 'required|exists:training_centers,id',
+        ]);
 
         $course->update($request->all());
 
-        return redirect()->route('course.index');
+        return redirect()->route('course.index')->with('success', 'Curso actualizado con éxito.');
     }
 
-    //Destroy se encuentra el registro para luego eliminarlo..
+    // Eliminar un curso
     public function destroy(Course $course)
     {
         $course->delete();
-        return redirect()->route('course.index');
+        return redirect()->route('course.index')->with('success', 'Curso eliminado con éxito.');
+    }
+
+    // --- MÉTODOS DE CONSULTA Y RELACIONES ---
+
+    public function consultaArea($id = 2)
+    {
+        $curso = Course::findOrFail($id);
+        return $curso->area;
+    }
+
+    public function consultaCentro($id = 1)
+    {
+        $curso = Course::findOrFail($id);
+        return $curso->training_center;
+    }
+
+    public function consultaAprendiz($id = 1)
+    {
+        $curso = Course::findOrFail($id);
+        return $curso->aprendices;
+    }
+
+    public function consultaProfe($id = 1)
+    {
+        $curso = Course::findOrFail($id);
+        return $curso->teachers;
     }
 }

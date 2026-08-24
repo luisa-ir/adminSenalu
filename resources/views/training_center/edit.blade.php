@@ -1,27 +1,25 @@
 @extends('layouts.app')
+
 @section('content')
-    <h1>Actualizar Training_center</h1>
+<div class="container my-4">
+    <h2>EDITAR CENTRO DE FORMACIÓN</h2>
 
-    <form action="{{ route('training_center.update', $training_center) }}" method="POST">
-
+    <form action="{{ route('training_center.update', $training_center->id) }}" method="POST">
         @csrf
-        @method('put')
+        @method('PUT')
 
-        <label>
-            Nombre:
-            <br>
-            <input type="text" name="nombre" value="{{ old('nombre', $training_center->nombre) }}">
-        </label>
-        <br>
-        <label>
-            location:
-            <br>
-            <input type="text" name="location" value="{{ old('location', $training_center->location) }}">
-        </label>
-        <br>
+        <div class="mb-3">
+            <label for="name" class="form-label">Nombre</label>
+            <input type="text" name="name" id="name" class="form-class form-control" value="{{ old('name', $training_center->name) }}" required>
+        </div>
 
-        <button type="submit" class="btn btn-success">Actualizar Training_center:</button>
+        <div class="mb-3">
+            <label for="location" class="form-label">Ubicación</label>
+            <input type="text" name="location" id="location" class="form-control" value="{{ old('location', $training_center->location) }}" required>
+        </div>
 
-
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+        <a href="{{ route('training_center.index') }}" class="btn btn-secondary">Cancelar</a>
     </form>
+</div>
 @endsection
