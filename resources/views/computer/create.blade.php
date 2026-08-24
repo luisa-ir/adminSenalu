@@ -65,7 +65,7 @@
             <!-- Botones -->
             <div class="form-actions">
 
-                <a href="{{ route('computer.list') }}" class="btn-cancel">
+                <a href="{{ route('computer.index') }}" class="btn-cancel">
                     Cancelar
                 </a>
 

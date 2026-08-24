@@ -45,32 +45,32 @@
                     <!-- Mega menú -->
                     <div class="mega-menu">
 
-                        <a href="{{ route('area.list') }}">
+                        <a href="{{ route('area.index') }}">
                             <i class="bi bi-diagram-3"></i>
                             <span>Áreas</span>
                         </a>
 
-                        <a href="{{ route('course.list') }}">
+                        <a href="{{ route('course.index') }}">
                             <i class="bi bi-book"></i>
                             <span>Cursos</span>
                         </a>
 
-                        <a href="{{ route('teacher.list') }}">
+                        <a href="{{ route('teacher.index') }}">
                             <i class="bi bi-person-workspace"></i>
                             <span>Instructores</span>
                         </a>
 
-                        <a href="{{ route('apprentice.list') }}">
+                        <a href="{{ route('apprentice.index') }}">
                             <i class="bi bi-people"></i>
                             <span>Aprendices</span>
                         </a>
 
-                        <a href="{{ route('computer.list') }}">
+                        <a href="{{ route('computer.index') }}">
                             <i class="bi bi-pc-display"></i>
                             <span>Equipos</span>
                         </a>
 
-                        <a href="{{ route('training_center.list') }}">
+                        <a href="{{ route('training_center.index') }}">
                             <i class="bi bi-building"></i>
                             <span>Centros</span>
                         </a>

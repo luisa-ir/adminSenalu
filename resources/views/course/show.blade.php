@@ -5,7 +5,7 @@
     <div class="card shadow-sm">
         <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
             <h5 class="mb-0">Detalle del Curso #{{ $course->id }}</h5>
-            <a href="{{ route('course.list') }}" class="btn btn-sm btn-light">Volver</a>
+            <a href="{{ route('course.index') }}" class="btn btn-sm btn-light">Volver</a>
         </div>
 
         <div class="card-body">
@@ -36,7 +36,7 @@
         </div>
 
         <div class="card-footer text-end">
-            <a href="{{ route('course.list') }}" class="btn btn-secondary">Regresar a la lista</a>
+            <a href="{{ route('course.index') }}" class="btn btn-secondary">Regresar a la lista</a>
         </div>
     </div>
 </div>

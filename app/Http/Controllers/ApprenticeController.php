@@ -36,7 +36,7 @@ class ApprenticeController extends Controller
     public function store(Request $request){
     $apprentice=Apprentice::create($request->all());
 
-    return $apprentice;
+    return redirect()->route('apprentice.index');
     }
 
     public function show($id){
@@ -51,7 +51,7 @@ class ApprenticeController extends Controller
 
     public function update(Request $request, Apprentice $apprentice){
     $apprentice->update($request->all());
-    return  redirect()->route('apprentice.list');
+    return  redirect()->route('apprentice.index');
     }
 
     //Destroy se encuentra el registro para luego eliminarlo..

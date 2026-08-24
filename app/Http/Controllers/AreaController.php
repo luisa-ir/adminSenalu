@@ -38,14 +38,14 @@ class AreaController extends Controller
     public function store(Request $request)
 {
     Area::create($request->all());
-    return redirect()->route('area.list');
+    return redirect()->route('area.index');
 
 }
 
 /*public function store(Request $request)
     {
         Area::create($request->all());
-        return redirect()->route('area.list');
+        return redirect()->route('area.index');
     }*/
 
     public function edit($id){
@@ -55,13 +55,13 @@ class AreaController extends Controller
 
     public function update(Request $request, Area $area){
     $area->update($request->all());
-    return  redirect()->route('area.list');
+    return  redirect()->route('area.index');
     }
 
     //Destroy se encuentra el registro para luego eliminarlo..
     public function destroy(Area $area){
         $area->delete();
-        return redirect()->route('area.list');
+        return redirect()->route('area.index');
     }
 
 

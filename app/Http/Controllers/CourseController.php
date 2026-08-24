@@ -9,72 +9,115 @@ use App\Models\Training_center;
 
 class CourseController extends Controller
 {
-    public function consultaArea(){
+    public function consultaArea()
+    {
         $curso = Course::find(2);
-        return $curso->area;
+
+        return $curso->areas;
     }
 
-    public function consultaCentro(){
+    public function consultaCentro()
+    {
         $curso = Course::find(1);
-        return $curso->training_center;
+
+        return $curso->training_centers;
     }
 
-    public function consultaAprendiz(){
+    public function consultaAprendiz()
+    {
         $curso = Course::find(1);
+
         return $curso->aprendices;
     }
 
-    public function consultaProfe(){
+    public function consultaProfe()
+    {
         $curso = Course::find(1);
+
         return $curso->teachers;
     }
 
-    public function index(){
+    // LISTAR
+    public function index()
+    {
+        $courses = Course::all();
 
-    $courses = Course::all();
-    return view('course.index',compact('courses'));
-
+        return view('course.index', compact('courses'));
     }
 
-    public function show($id){
-        $course = Course::find($id);
+    // MOSTRAR
+    public function show($id)
+    {
+        $course = Course::findOrFail($id);
+
         return view('course.show', compact('course'));
     }
 
-    public function create (){
+    // FORMULARIO CREAR
+    public function create()
+    {
+        $areas = Area::all();
+        $training_centers = Training_center::all();
 
-    $areas=Area::all();
-    $training_centers=Training_center::all();
-
-     return view('course.create',compact('areas','training_centers'));
+        return view(
+            'course.create',
+            compact('areas', 'training_centers')
+        );
     }
 
+    // GUARDAR
+    public function store(Request $request)
+    {
+        $request->validate([
+            'course_number' => 'required',
+            'day' => 'required',
+            'area_id' => 'required',
+            'training_center_id' => 'required',
+        ]);
 
-    public function store(Request $request){
+        Course::create($request->all());
 
-    $course=Course::create($request->all());
-
-    return $course;
+        return redirect()
+            ->route('course.index')
+            ->with('success', 'Curso creado correctamente.');
     }
 
+    // FORMULARIO EDITAR
     public function edit(Course $course)
     {
         $areas = Area::all();
-        return view('course.edit', compact('course', 'users'));
+        $training_centers = Training_center::all();
+
+        return view(
+            'course.edit',
+            compact('course', 'areas', 'training_centers')
+        );
     }
 
+    // ACTUALIZAR
     public function update(Request $request, Course $course)
     {
+        $request->validate([
+            'course_number' => 'required',
+            'day' => 'required',
+            'area_id' => 'required',
+            'training_center_id' => 'required',
+        ]);
 
         $course->update($request->all());
 
-        return redirect()->route('course.index');
+        return redirect()
+            ->route('course.index')
+            ->with('success', 'Curso actualizado correctamente.');
     }
 
-    //Destroy se encuentra el registro para luego eliminarlo..
+    // ELIMINAR
     public function destroy(Course $course)
     {
         $course->delete();
-        return redirect()->route('course.index');
+
+        return redirect()
+            ->route('course.index')
+            ->with('success', 'Curso eliminado correctamente.');
     }
 }

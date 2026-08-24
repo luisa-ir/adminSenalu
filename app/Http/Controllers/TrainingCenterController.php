@@ -3,46 +3,81 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Training_center;
+use App\Models\Training_Center;
 
 class TrainingCenterController extends Controller
 {
-    // consulta de que profesores hay en cada centro
-    public function consultaProfesores(){
-        $centro = Training_center::find(4);
-        return $centro->teachers;
-    }
-    // consulta, en que centro de formacion se da un curso
-    public function consultaCursos(){
-        $centro = Training_center::find(1);
-        return $centro->courses;
+    // LISTAR
+    public function index()
+    {
+        $training_centers = Training_Center::all();
+
+        return view('training_center.index', compact('training_centers'));
     }
 
-    public function index(){
-
-    $training_centers = Training_center::all();
-    return view('training_center.index',compact('training_centers'));
-
+    // MOSTRAR FORMULARIO DE CREACIÓN
+    public function create()
+    {
+        return view('training_center.create');
     }
 
-    public function show($id){
-        $training_center = Training_center::find($id);
+    // GUARDAR
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'location' => 'required|string|max:255',
+        ]);
+
+        Training_Center::create($request->all());
+
+        return redirect()
+            ->route('training_center.index')
+            ->with('success', 'Centro de formación creado correctamente.');
+    }
+
+    // MOSTRAR UNO
+    public function show($id)
+    {
+        $training_center = Training_Center::findOrFail($id);
+
         return view('training_center.show', compact('training_center'));
     }
 
+    // FORMULARIO DE EDICIÓN
+    public function edit($id)
+    {
+        $training_center = Training_Center::findOrFail($id);
 
-    public function create (){
-
-     return view('training_center.create');
+        return view('training_center.edit', compact('training_center'));
     }
 
-    public function store(Request $request){
+    // ACTUALIZAR
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'location' => 'required|string|max:255',
+        ]);
 
-    $training_center::create($request->all());
+        $training_center = Training_Center::findOrFail($id);
 
-    return  redirect()->route('$training_center.list');
+        $training_center->update($request->all());
 
+        return redirect()
+            ->route('training_center.index')
+            ->with('success', 'Centro de formación actualizado correctamente.');
     }
 
+    // ELIMINAR
+    public function destroy($id)
+    {
+        $training_center = Training_Center::findOrFail($id);
 
+        $training_center->delete();
+
+        return redirect()
+            ->route('training_center.index')
+            ->with('success', 'Centro de formación eliminado correctamente.');
+    }
 }

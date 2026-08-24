@@ -144,7 +144,7 @@
             <!-- Botones -->
             <div class="form-actions">
 
-                <a href="{{ route('apprentice.list') }}" class="btn-cancel">
+                <a href="{{ route('apprentice.index') }}" class="btn-cancel">
                     Cancelar
                 </a>
 

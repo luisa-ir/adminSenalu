@@ -66,7 +66,7 @@
             <!-- Botones -->
             <div class="form-actions">
 
-                <a href="{{ route('training_center.list') }}" class="btn-cancel">
+                <a href="{{ route('training_center.index') }}" class="btn-cancel">
                     Cancelar
                 </a>
 

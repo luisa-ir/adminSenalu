@@ -35,9 +35,10 @@
 
                 <input
                     type="number"
-                    name="course number"
+                    name="course_number"
                     id="course_number"
                     class="form-input"
+                    value="{{old('course_number')}}"
                     placeholder="Ingrese el número del curso"
                 >
 
@@ -125,7 +126,7 @@
             <!-- Botones -->
             <div class="form-actions">
 
-                <a href="{{ route('course.list') }}" class="btn-cancel">
+                <a href="{{ route('course.index') }}" class="btn-cancel">
                     Cancelar
                 </a>
 
