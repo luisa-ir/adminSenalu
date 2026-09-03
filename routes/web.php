@@ -9,6 +9,7 @@ use App\Http\Controllers\TrainingCenterController;
 use App\Http\Controllers\ApprenticeController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\AuthController;
 
 
 /*
@@ -30,6 +31,9 @@ Route::get('/', function () {
 //Route::get('/consultas',[ConsultasController::class, 'consulta_2']);
 
 
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.store');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('area/list',[AreaController::class,'index'])->name('area.index');
 Route::get('area/show/{id}',[AreaController::class,'show'])->name('area.show');
