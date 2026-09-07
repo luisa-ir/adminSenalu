@@ -11,8 +11,10 @@ class Computer extends Model
 
     protected $fillable = [
         'number',
-        'brand'
+                'brand',
+                'urlFoto'
     ];
+
 
     //relacion 1:n con aprendices
     public function apprentices(){

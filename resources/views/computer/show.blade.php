@@ -15,7 +15,7 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label text-muted fw-bold">Numero del Computador:</label>
+                <label class="form-label text-muted fw-bold">Número del Computador:</label>
                 <p class="fs-5">{{ $computer->number }}</p>
             </div>
 
@@ -23,6 +23,8 @@
                 <label class="form-label text-muted fw-bold">Marca:</label>
                 <p class="fs-5">{{ $computer->brand }}</p>
             </div>
+
+            
         </div>
 
         <div class="card-footer text-end">

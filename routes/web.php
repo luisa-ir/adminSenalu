@@ -44,12 +44,12 @@ Route::put('area/{area}',[AreaController::class,'update'])->name('area.update');
 Route::delete('area/{area}', [AreaController::class, 'destroy'])->name('area.destroy');
 
 Route::get('computer/list',[ComputerController::class,'index'])->name('computer.index');
-Route::get('computer/show/{id}',[ComputerController::class,'show'])->name('computer.show');
+Route::get('computer/show/{computer}',[ComputerController::class,'show'])->name('computer.show');
 Route::get('computer/create',[ComputerController::class,'create'])->name('computer.create');
 Route::post('computer/store',[ComputerController::class,'store'])->name('computer.store');
 Route::get('computer/{computer}/edit',[ComputerController::class,'edit'])->name('computer.edit');
 Route::put('computer/{computer}',[ComputerController::class,'update'])->name('computer.update');
-Route::delete('/computer/{id}',[ComputerController::class,'destroy'])->name('computer.destroy');
+Route::delete('computer/{computer}',[ComputerController::class,'destroy'])->name('computer.destroy');
 
 Route::get('training_center/list',[TrainingCenterController::class,'index'])->name('training_center.index');
 Route::get('training_center/show/{id}',[TrainingCenterController::class,'show'])->name('training_center.show');

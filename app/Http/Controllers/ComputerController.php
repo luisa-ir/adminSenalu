@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Computer;
 
 class ComputerController extends Controller
 {
      public function consultaApprentice(){
         $computer = Computer::findOrFail(3);
-        return $computer->apprentice;
+        return $computer->apprentices;
     }
     
     public function index()
@@ -25,13 +26,25 @@ class ComputerController extends Controller
     }
 
     
-    public function store(Request $request)
-    {
-        $computer=Computer::create($request->all());
+    public function store(Request $request){
+        $validated = $request->validate([
+            'number' => ['required', 'integer'],
+            'brand' => ['required', 'string', 'max:100'],
+            'urlFoto' => ['nullable', 'image', 'max:5120'],
+        ]);
+
+        if ($request->hasFile('urlFoto')) {
+            $validated['urlFoto'] = $request->file('urlFoto')->store('images', 'public');
+        }
+
+        Computer::create($validated);
+         
         return redirect()->route('computer.index');
     }
+       
+         
+        
 
-    
     public function show(string $id)
     {
         $computer = Computer::findOrFail($id);
@@ -48,7 +61,21 @@ class ComputerController extends Controller
     
     public function update(Request $request, Computer $computer)
     {
-        $computer->update($request->all());
+        $validated = $request->validate([
+            'number' => ['required', 'integer'],
+            'brand' => ['required', 'string', 'max:100'],
+            'urlFoto' => ['nullable', 'image', 'max:5120'],
+        ]);
+
+        if ($request->hasFile('urlFoto')) {
+            if ($computer->urlFoto) {
+                Storage::disk('public')->delete($computer->urlFoto);
+            }
+
+            $validated['urlFoto'] = $request->file('urlFoto')->store('images', 'public');
+        }
+
+        $computer->update($validated);
         return redirect()->route('computer.index');
     }
 

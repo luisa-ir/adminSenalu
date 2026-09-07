@@ -41,6 +41,7 @@
                     placeholder="Ingrese el número del computador"
                 >
 
+
             </div>
 
 
@@ -58,6 +59,9 @@
                     class="form-input"
                     placeholder="Ej: Lenovo, HP, Dell..."
                 >
+                 <br>
+        <input type="file" name="urlFoto" class="form-control-file" accept="image/*">
+        <br>
 
             </div>
 
@@ -75,6 +79,8 @@
                 </button>
 
             </div>
+
+             
 
         </form>
 

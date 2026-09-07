@@ -13,7 +13,7 @@ return new class extends Migration
                   ->nullable()
                   ->constrained('roles')
                   ->nullOnDelete();
-        });
+        }); 
     }
 
     public function down(): void
