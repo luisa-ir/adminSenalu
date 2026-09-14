@@ -16,7 +16,8 @@ class ComputerController extends Controller
     public function index()
     {
         $computers = Computer::all();
-        return view('computer.index',compact('computers'));
+        return response()->json($computers);
+        //return view('computer.index',compact('computers'));
 
     }
 
@@ -38,8 +39,8 @@ class ComputerController extends Controller
         }
 
         Computer::create($validated);
-         
-        return redirect()->route('computer.index');
+         return response()->json($computer);
+        //return redirect()->route('computer.index');
     }
        
          

@@ -8,22 +8,15 @@ use App\Models\Area;
 
 class AreaController extends Controller
 {
-   public function consultaProfe(){
-        $area = Area::find(2);
-        return $area->teachers;
-    }
-
-    public function consultasCurso(){
-        $area = Area::find(1);
-        return $area->courses;
-    }
+  
 
     public function index(){
 
+    return "hola";
     $areas = Area::all();
-    return view('area.index',compact('areas'));
-
-    }
+ 
+        return response()->json($areas);
+   }
 
     public function create()
 {

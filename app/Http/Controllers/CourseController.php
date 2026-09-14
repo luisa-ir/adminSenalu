@@ -38,10 +38,13 @@ class CourseController extends Controller
     }
 
     // LISTAR
-    public function index()
+    public function index(Request $request)
     {
         $courses = Course::all();
 
+        if ($request->expectsJson()) {
+            return response()->json($courses);
+        }
         return view('course.index', compact('courses'));
     }
 

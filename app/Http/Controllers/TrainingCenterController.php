@@ -8,10 +8,13 @@ use App\Models\Training_Center;
 class TrainingCenterController extends Controller
 {
     // LISTAR
-    public function index()
+    public function index(Request $request)
     {
         $training_centers = Training_Center::all();
 
+        if ($request->expectsJson()) {
+            return response()->json($training_centers);
+        }
         return view('training_center.index', compact('training_centers'));
     }
 

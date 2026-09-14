@@ -26,8 +26,11 @@ class TeacherController extends Controller
         return $profe->courses;
     }
 
-    public function index(){
+    public function index(Request $request){
     $teachers = Teacher::all();
+    if ($request->expectsJson()) {
+        return response()->json($teachers);
+    }
     return view('teacher.index',compact('teachers'));
     }
 

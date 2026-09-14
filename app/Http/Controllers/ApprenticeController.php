@@ -21,7 +21,8 @@ class ApprenticeController extends Controller
 
     public function index(){
     $apprentices = Apprentice::all();
-    return view('apprentice.index',compact('apprentices'));
+    return response()->json($apprentices);
+    //return view('apprentice.index',compact('apprentices'));
 
     }
 
@@ -35,8 +36,9 @@ class ApprenticeController extends Controller
 
     public function store(Request $request){
     $apprentice=Apprentice::create($request->all());
+    return response()->json($apprentice);
 
-    return redirect()->route('apprentice.index');
+    //return redirect()->route('apprentice.index');
     }
 
     public function show($id){
